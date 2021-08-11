@@ -8,6 +8,7 @@ public enum SGDataSource: String, CaseIterable, Decodable {
     case yr
     case smhi
     case sg
+    case mercator // bio only
     case unknown
 }
 
