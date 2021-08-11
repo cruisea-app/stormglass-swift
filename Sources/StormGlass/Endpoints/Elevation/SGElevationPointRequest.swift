@@ -4,11 +4,11 @@ public struct SGElevationPointRequest: SGEndpoint {
     public typealias Response = SGElevationPointResponse
 
     let coordinate: SGCoordinate
-    
+
     public init(coordinate: SGCoordinate) {
         self.coordinate = coordinate
     }
-    
+
     public var path: String {
         "/v2/elevation/point"
     }
@@ -26,7 +26,7 @@ public struct SGElevationPointResponse: Decodable {
         /// The elevation value given in meters relative to sea level.
         public let elevation: Double
     }
-    
+
     public let data: Item
     public let meta: SGResponseMetadata
 }

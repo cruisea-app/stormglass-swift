@@ -8,7 +8,7 @@ public struct SGBioPointRequest: SGEndpoint {
     let startDate: Date?
     let endDate: Date?
     let sources: [String]?
-    
+
     public init(
         coordinate: SGCoordinate,
         values: [SGBioPointParameters],
@@ -22,7 +22,7 @@ public struct SGBioPointRequest: SGEndpoint {
         self.endDate = endDate
         sources = dataSources?.map(\.rawValue)
     }
-    
+
     public var path: String {
         "/v2/bio/point"
     }
@@ -34,7 +34,7 @@ public struct SGBioPointRequest: SGEndpoint {
             "params": values,
             "start": startDate,
             "end": endDate,
-            "source": sources
+            "source": sources,
         ]
     }
 }
@@ -119,7 +119,7 @@ public struct SGBioPointResponse: Decodable {
         /// Soil temperature at 100 to 200 cm below surface
         let soilTemperature100cm: SGDataSourceValue<Double>?
     }
-    
+
     public let data: [Item]
     public let meta: SGResponseMetadata
 }

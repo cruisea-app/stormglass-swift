@@ -5,7 +5,7 @@ public struct SGWeatherPointRequest: SGEndpoint {
     public typealias Response = SGWeatherPointResponse
 
     // Required Parameters
-    internal let latitude, longitude: Double
+    internal let coordinate: SGCoordinate
     internal let values: [String]
 
     // Optional Parameters
@@ -20,22 +20,19 @@ public struct SGWeatherPointRequest: SGEndpoint {
     /// To get marine data you include a coordinate at sea in your request, and to get data for land and lakes - simply send in a coordinate located on land or on a lake.
     ///
     /// - Parameters:
-    ///   - latitude: The latitude of the desired coordinate
-    ///   - longitude: The longitude of the desired coordinate
+    ///   - coordinate: The coordinate for the request data
     ///   - values: The parameters or values that you wish to receive.
     ///   - startDate: The first forecast hour to be retrieved.
     ///   - endDate: The last forecast hour to be retrieved.
     ///   - dataSources: The data source(s) which are used to obtain the data. If `nil` is provided, then any and all data sources will be used.
     public init(
-        latitude: Double,
-        longitude: Double,
+        coordinate: SGCoordinate,
         values: [SGWeatherPointParameters],
         startDate: Date? = nil,
         endDate: Date? = nil,
         dataSources: [SGDataSource]? = nil
     ) {
-        self.latitude = latitude
-        self.longitude = longitude
+        self.coordinate = coordinate
         self.values = values.map(\.rawValue)
         self.startDate = startDate
         self.endDate = endDate
@@ -50,8 +47,8 @@ public struct SGWeatherPointRequest: SGEndpoint {
 
     public var parameters: [String: SGParameterEncodable?] {
         return [
-            "lat": latitude,
-            "lng": longitude,
+            "lat": coordinate.latitude,
+            "lng": coordinate.longitude,
             "params": values,
             "start": startDate,
             "end": endDate,

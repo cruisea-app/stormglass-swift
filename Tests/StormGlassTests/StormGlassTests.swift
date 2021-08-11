@@ -18,7 +18,7 @@ final class StormGlassTests: XCTestCase {
     func testExample() throws {
         let exp = expectation(description: "request should complete")
 
-        let request = SGRequest(endpoint: SGWeatherPointRequest(latitude: 0, longitude: 0, values: SGWeatherPointParameters.allCases))
+        let request = SGRequest(endpoint: SGWeatherPointRequest(coordinate: .init(latitude: 0, longitude: 0), values: SGWeatherPointParameters.allCases))
         request.fetch { _ in
             exp.fulfill()
         }
