@@ -20,17 +20,17 @@ extension Array: SGParameterEncodable where Element == String {
     public func encode() -> String { joined(separator: ",") }
 }
 
-extension Dictionary where Key == String, Value == Optional<SGParameterEncodable> {
+extension Dictionary where Key == String, Value == SGParameterEncodable? {
     func convertToQueryItems() -> [URLQueryItem] {
         compactMap { parameter in
             guard let value = parameter.value?
-                    .encode()
-                    .trimmingCharacters(in: .whitespacesAndNewlines)
-                    .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+                .encode()
+                .trimmingCharacters(in: .whitespacesAndNewlines)
+                .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
             else {
                 return nil
             }
-            
+
             return URLQueryItem(
                 name: parameter.key,
                 value: value

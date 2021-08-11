@@ -1,24 +1,23 @@
 import Foundation
 
 public struct SGAstronomyPointRequest: SGEndpoint {
-    
     public typealias Response = SGAstronomyPointResponse
-    
+
     let coordinate: SGCoordinate
     let startDate: Date?
     let endDate: Date?
-    
+
     public init(coordinate: SGCoordinate, startDate: Date? = nil, endDate: Date? = nil) {
         self.coordinate = coordinate
         self.startDate = startDate
         self.endDate = endDate
     }
-    
+
     public var path: String {
         "/v2/astronomy/point"
     }
-    
-    public var parameters: [String : SGParameterEncodable?] {
+
+    public var parameters: [String: SGParameterEncodable?] {
         [
             "lat": coordinate.latitude,
             "lng": coordinate.longitude,
@@ -26,7 +25,6 @@ public struct SGAstronomyPointRequest: SGEndpoint {
             "end": endDate,
         ]
     }
-    
 }
 
 public struct SGAstronomyPointResponse: Decodable {
@@ -41,6 +39,7 @@ public struct SGAstronomyPointResponse: Decodable {
             case thirdQuarter = "Third quarter"
             case vaningCrescent = "Vaning crescent"
         }
+
         public struct Phase: Decodable {
             /// A string describing the moon phase.
             public let text: PhaseTextValue
@@ -49,12 +48,13 @@ public struct SGAstronomyPointResponse: Decodable {
             /// A float value for the phase of the given time.
             public let value: Double
         }
-        
+
         /// the current moon phase
         public let current: Phase
         /// closest phase being one of New moon, First quarter, Full moon or Third quarter.
         public let closest: Phase
     }
+
     public struct Item: Decodable {
         /// Timestamp in UTC indicating the day for the data
         public let time: Date
@@ -83,7 +83,7 @@ public struct SGAstronomyPointResponse: Decodable {
         /// Timestamp for sunset in UTC. Will return null if no dusk occurs on the given day
         public let nauticalDusk: Date
     }
-    
+
     public let data: [Item]
     public let meta: SGResponseMetadata
 }

@@ -3,18 +3,18 @@ import Foundation
 public struct SGWeatherPointRequest: SGEndpoint {
     // Response Type
     public typealias Response = SGWeatherPointResponse
-    
+
     // Required Parameters
     internal let latitude, longitude: Double
     internal let values: [String]
-    
+
     // Optional Parameters
     internal let startDate: Date?
     internal let endDate: Date?
     internal let sources: [String]?
-    
+
     // Initialiser
-    
+
     /// The weather request is used to fetch weather data for a point. The Storm Glass API provides marine weather as well as global weather for land and lakes.
     ///
     /// To get marine data you include a coordinate at sea in your request, and to get data for land and lakes - simply send in a coordinate located on land or on a lake.
@@ -39,15 +39,15 @@ public struct SGWeatherPointRequest: SGEndpoint {
         self.values = values.map(\.rawValue)
         self.startDate = startDate
         self.endDate = endDate
-        self.sources = dataSources?.map(\.rawValue)
+        sources = dataSources?.map(\.rawValue)
     }
-    
+
     // Protocol
-    
+
     public var path: String {
         "/v2/weather/point"
     }
-    
+
     public var parameters: [String: SGParameterEncodable?] {
         return [
             "lat": latitude,
@@ -55,10 +55,9 @@ public struct SGWeatherPointRequest: SGEndpoint {
             "params": values,
             "start": startDate,
             "end": endDate,
-            "source": sources
+            "source": sources,
         ]
     }
-    
 }
 
 public enum SGWeatherPointParameters: String, CaseIterable {
@@ -281,7 +280,7 @@ public struct SGWeatherPointResponse: Decodable {
         /// Speed of wind at 200hpa in meters per second.
         let windSpeed200hpa: SGDataSourceValue<Double>?
     }
-    
+
     let hours: [Item]
     let meta: SGResponseMetadata
 }

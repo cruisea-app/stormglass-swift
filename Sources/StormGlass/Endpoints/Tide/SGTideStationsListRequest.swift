@@ -2,12 +2,12 @@ import Foundation
 
 public struct SGTideStationsListRequest: SGEndpoint {
     public typealias Response = SGTideStationsListResponse
-    
+
     public var path: String {
         "/v2/tide/stations"
     }
-    
-    public var parameters: [String : SGParameterEncodable?] {
+
+    public var parameters: [String: SGParameterEncodable?] {
         return [:]
     }
 }
@@ -23,7 +23,7 @@ public struct SGTideStationsListResponse: Decodable {
         /// Tide station owner
         var source: SGDataSource
     }
-    
+
     let data: [Item]
     let meta: SGResponseMetadata
 }

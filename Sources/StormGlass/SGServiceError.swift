@@ -1,28 +1,27 @@
 import Foundation
 
 public enum SGServiceError: LocalizedError {
-    
     /// Bad URL – The URL could not be generated successfully.
     case badURL
-    
+
     /// Bad Request – Your request is invalid.
     case badRequest
-    
+
     /// Bad Response – Unable to decode the response.
     case badResponse
-    
+
     /// Unauthorized – Your API key is invalid.
     case unauthorised
-    
+
     /// Too Many Requests – You’ve reached your daily limit.
     case rateLimit
-    
+
     /// Internal Server Error – We had a problem with our server. Try again later.
     case internalServerError
-    
+
     /// Service Unavailable – We’re temporarily offline for maintenance. Please try again later.
     case maintenance
-    
+
     internal init?(statusCode: Int) {
         switch statusCode {
         case 400:
@@ -39,7 +38,7 @@ public enum SGServiceError: LocalizedError {
             return nil
         }
     }
-    
+
     public var failureReason: String? {
         switch self {
         case .badURL:
@@ -58,7 +57,7 @@ public enum SGServiceError: LocalizedError {
             return "Storm Glass is temporarily offline for maintenance"
         }
     }
-    
+
     public var recoverySuggestion: String? {
         switch self {
         case .unauthorised:
