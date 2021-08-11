@@ -3,9 +3,9 @@ import Foundation
 public struct SGAstronomyPointRequest: SGEndpoint {
     public typealias Response = SGAstronomyPointResponse
 
-    let coordinate: SGCoordinate
-    let startDate: Date?
-    let endDate: Date?
+    internal let coordinate: SGCoordinate
+    internal let startDate: Date?
+    internal let endDate: Date?
 
     public init(coordinate: SGCoordinate, startDate: Date? = nil, endDate: Date? = nil) {
         self.coordinate = coordinate

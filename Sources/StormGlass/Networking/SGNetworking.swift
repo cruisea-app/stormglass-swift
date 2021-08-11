@@ -74,10 +74,7 @@ public struct SGRequest<Endpoint: SGEndpoint> {
                     completion(.failure(SGServiceError.badResponse))
                     return
                 }
-
-                #warning("TODO: Handle errors")
-                print(String(decoding: data, as: UTF8.self))
-
+                
                 do {
                     let result = try self.decoder.decode(Endpoint.Response.self, from: data)
                     completion(.success(result))
@@ -92,5 +89,3 @@ public struct SGRequest<Endpoint: SGEndpoint> {
         }
     }
 }
-
-extension String: Error {}

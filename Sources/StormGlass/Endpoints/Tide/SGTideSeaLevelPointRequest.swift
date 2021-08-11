@@ -39,9 +39,9 @@ public struct SGTideSeaLevelPointResponse: Decodable {
         }
 
         /// Timestamp in UTC
-        let time: Date
+        public let time: Date
         /// Sea level given in metres where the key itself is the name of the source
-        let data: [SGDataSource: Double]
+        public let data: [SGDataSource: Double]
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)

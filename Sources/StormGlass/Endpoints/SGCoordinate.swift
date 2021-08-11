@@ -1,6 +1,6 @@
 import Foundation
 
-public struct SGCoordinate {
+public struct SGCoordinate: Equatable {
     public let latitude: Double
     public let longitude: Double
 
@@ -10,7 +10,7 @@ public struct SGCoordinate {
     }
 }
 
-public struct SGCoordinateBox {
+public struct SGCoordinateBox: Equatable {
     public let topRight: SGCoordinate
     public let bottomLeft: SGCoordinate
 

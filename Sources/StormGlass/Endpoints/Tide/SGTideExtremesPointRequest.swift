@@ -3,10 +3,10 @@ import Foundation
 public struct SGTideExtremesPointRequest: SGEndpoint {
     public typealias Response = SGTideExtremesPointResponse
 
-    let coordinate: SGCoordinate
-    let startDate: Date?
-    let endDate: Date?
-    let datum: SGTideDatum?
+    internal let coordinate: SGCoordinate
+    internal let startDate: Date?
+    internal let endDate: Date?
+    internal let datum: SGTideDatum?
 
     public var path: String {
         "/v2/tide/extremes/point"
@@ -37,11 +37,11 @@ public struct SGTideExtremesPointResponse: Decodable {
 
     public struct Item: Decodable {
         /// Timestamp in UTC
-        let time: Date
+        public let time: Date
         /// Height in meters
-        let height: String
+        public let height: String
         /// Type of extreme. Either low or high
-        let type: ExtremeType
+        public let type: ExtremeType
     }
 
     public let data: [Item]

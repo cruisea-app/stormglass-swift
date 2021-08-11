@@ -15,15 +15,15 @@ public struct SGTideStationsListRequest: SGEndpoint {
 public struct SGTideStationsListResponse: Decodable {
     public struct Item: Decodable {
         /// Name of tide station
-        var name: String
+        public var name: String
         /// Latitude of tide station
-        var lat: Double
+        public var lat: Double
         /// Longitude of tide station
-        var lng: Double
+        public var lng: Double
         /// Tide station owner
-        var source: SGDataSource
+        public var source: SGDataSource
     }
 
-    let data: [Item]
-    let meta: SGResponseMetadata
+    public let data: [Item]
+    public let meta: SGResponseMetadata
 }

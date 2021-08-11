@@ -67,7 +67,7 @@ public enum SGDataSource: String, CaseIterable, Decodable {
 }
 
 public struct SGDataSourceValue<Value: Decodable>: Decodable {
-    let values: [SGDataSource: Value]
+    public let values: [SGDataSource: Value]
 
     public init(from decoder: Decoder) throws {
         let dictionary = try decoder.singleValueContainer().decode([String: Value].self)

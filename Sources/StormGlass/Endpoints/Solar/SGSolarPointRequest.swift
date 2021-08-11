@@ -3,11 +3,11 @@ import Foundation
 public struct SGSolarPointRequest: SGEndpoint {
     public typealias Response = SGSolarPointResponse
 
-    let coordinate: SGCoordinate
-    let values: [String]
-    let startDate: Date?
-    let endDate: Date?
-    let sources: [String]?
+    internal let coordinate: SGCoordinate
+    internal let values: [String]
+    internal let startDate: Date?
+    internal let endDate: Date?
+    internal let sources: [String]?
 
     public init(
         coordinate: SGCoordinate,
@@ -49,11 +49,11 @@ public enum SGSolarPointParameters: String, CaseIterable {
 public struct SGSolarPointResponse: Decodable {
     public struct Item: Decodable {
         /// Timestamp in UTC
-        let time: Date
+        public let time: Date
         /// Ultraviolet (UV) radiation at ground or sea level
-        let uvIndex: SGDataSourceValue<Double>?
+        public let uvIndex: SGDataSourceValue<Double>?
         /// Downward short-wave radiation flux (W m⁻²) at ground or sea level
-        let downwardShortWaveRadiationFlux: SGDataSourceValue<Double>?
+        public let downwardShortWaveRadiationFlux: SGDataSourceValue<Double>?
     }
 
     public let data: [Item]

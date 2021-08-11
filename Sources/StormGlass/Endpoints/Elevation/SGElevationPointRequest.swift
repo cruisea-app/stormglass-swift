@@ -3,7 +3,7 @@ import Foundation
 public struct SGElevationPointRequest: SGEndpoint {
     public typealias Response = SGElevationPointResponse
 
-    let coordinate: SGCoordinate
+    internal let coordinate: SGCoordinate
 
     public init(coordinate: SGCoordinate) {
         self.coordinate = coordinate
