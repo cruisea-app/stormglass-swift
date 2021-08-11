@@ -1,6 +1,6 @@
 import Foundation
 
-public enum StormGlassServiceError: LocalizedError {
+public enum SGServiceError: LocalizedError {
     
     /// Bad URL – The URL could not be generated successfully.
     case badURL

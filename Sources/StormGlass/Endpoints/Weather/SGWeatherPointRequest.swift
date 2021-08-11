@@ -1,6 +1,6 @@
 import Foundation
 
-public struct SGWeatherPointRequest: StormGlassEndpoint {
+public struct SGWeatherPointRequest: SGEndpoint {
     // Response Type
     public typealias Response = SGWeatherPointResponse
     
@@ -32,7 +32,7 @@ public struct SGWeatherPointRequest: StormGlassEndpoint {
         values: [SGWeatherPointParameters],
         startDate: Date? = nil,
         endDate: Date? = nil,
-        dataSources: [StormGlassSource]? = nil
+        dataSources: [SGDataSource]? = nil
     ) {
         self.latitude = latitude
         self.longitude = longitude
@@ -48,7 +48,7 @@ public struct SGWeatherPointRequest: StormGlassEndpoint {
         "/v2/weather/point"
     }
     
-    public var parameters: [String: StormGlassParameterEncodable?] {
+    public var parameters: [String: SGParameterEncodable?] {
         return [
             "lat": latitude,
             "lng": longitude,
@@ -175,111 +175,111 @@ public struct SGWeatherPointResponse: Decodable {
         /// Timestamp in UTC
         let time: Date
         /// Air temperature in degrees celsius
-        let airTemperature: SGSourceValue<Double>?
+        let airTemperature: SGDataSourceValue<Double>?
         /// Air temperature at 80m above sea level in degrees celsius
-        let airTemperature80m: SGSourceValue<Double>?
+        let airTemperature80m: SGDataSourceValue<Double>?
         /// Air temperature at 100m above sea level in degrees celsius
-        let airTemperature100m: SGSourceValue<Double>?
+        let airTemperature100m: SGDataSourceValue<Double>?
         /// Air temperature at 1000hpa in degrees celsius
-        let airTemperature1000hpa: SGSourceValue<Double>?
+        let airTemperature1000hpa: SGDataSourceValue<Double>?
         /// Air temperature at 800hpa in degrees celsius
-        let airTemperature800hpa: SGSourceValue<Double>?
+        let airTemperature800hpa: SGDataSourceValue<Double>?
         /// Air temperature at 500hpa in degrees celsius
-        let airTemperature500hpa: SGSourceValue<Double>?
+        let airTemperature500hpa: SGDataSourceValue<Double>?
         /// Air temperature at 200hpa in degrees celsius
-        let airTemperature200hpa: SGSourceValue<Double>?
+        let airTemperature200hpa: SGDataSourceValue<Double>?
         /// Air pressure in hPa
-        let pressure: SGSourceValue<Double>?
+        let pressure: SGDataSourceValue<Double>?
         /// Total cloud coverage in percent
-        let cloudCover: SGSourceValue<Double>?
+        let cloudCover: SGDataSourceValue<Double>?
         /// Direction of current. 0° indicates current coming from north
-        let currentDirection: SGSourceValue<Double>?
+        let currentDirection: SGDataSourceValue<Double>?
         /// Speed of current in meters per second
-        let currentSpeed: SGSourceValue<Double>?
+        let currentSpeed: SGDataSourceValue<Double>?
         /// Wind gust in meters per second
-        let gust: SGSourceValue<Double>?
+        let gust: SGDataSourceValue<Double>?
         /// Relative humidity in percent
-        let humidity: SGSourceValue<Double>?
+        let humidity: SGDataSourceValue<Double>?
         /// Proportion, 0-1
-        let iceCover: SGSourceValue<Double>?
+        let iceCover: SGDataSourceValue<Double>?
         /// Mean precipitation in kg/m²
-        let precipitation: SGSourceValue<Double>?
+        let precipitation: SGDataSourceValue<Double>?
         /// Depth of snow in meters
-        let snowDepth: SGSourceValue<Double>?
+        let snowDepth: SGDataSourceValue<Double>?
         /// Sea level relative to MSL
-        let seaLevel: SGSourceValue<Double>?
+        let seaLevel: SGDataSourceValue<Double>?
         /// Direction of swell waves. 0° indicates swell coming from north
-        let swellDirection: SGSourceValue<Double>?
+        let swellDirection: SGDataSourceValue<Double>?
         /// Height of swell waves in meters
-        let swellHeight: SGSourceValue<Double>?
+        let swellHeight: SGDataSourceValue<Double>?
         /// Period of swell waves in seconds
-        let swellPeriod: SGSourceValue<Double>?
+        let swellPeriod: SGDataSourceValue<Double>?
         /// Direction of secondary swell waves. 0° indicates swell coming from north
-        let secondarySwellPeriod: SGSourceValue<Double>?
+        let secondarySwellPeriod: SGDataSourceValue<Double>?
         /// Height of secondary swell waves in meters
-        let secondarySwellDirection: SGSourceValue<Double>?
+        let secondarySwellDirection: SGDataSourceValue<Double>?
         /// Period of secondary swell waves in seconds
-        let secondarySwellHeight: SGSourceValue<Double>?
+        let secondarySwellHeight: SGDataSourceValue<Double>?
         /// Horizontal visibility in km
-        let visibility: SGSourceValue<Double>?
+        let visibility: SGDataSourceValue<Double>?
         /// Water temperature in degrees celsius
-        let waterTemperature: SGSourceValue<Double>?
+        let waterTemperature: SGDataSourceValue<Double>?
         /// Direction of combined wind and swell waves. 0° indicates waves coming from north
-        let waveDirection: SGSourceValue<Double>?
+        let waveDirection: SGDataSourceValue<Double>?
         /// Significant Height of combined wind and swell waves in meters
-        let waveHeight: SGSourceValue<Double>?
+        let waveHeight: SGDataSourceValue<Double>?
         /// Period of combined wind and swell waves in seconds
-        let wavePeriod: SGSourceValue<Double>?
+        let wavePeriod: SGDataSourceValue<Double>?
         /// Direction of wind waves. 0° indicates waves coming from north
-        let windWaveDirection: SGSourceValue<Double>?
+        let windWaveDirection: SGDataSourceValue<Double>?
         /// Height of wind waves in meters
-        let windWaveHeight: SGSourceValue<Double>?
+        let windWaveHeight: SGDataSourceValue<Double>?
         /// Period of wind waves in seconds
-        let windWavePeriod: SGSourceValue<Double>?
+        let windWavePeriod: SGDataSourceValue<Double>?
         /// Direction of wind at 10m above sea level. 0° indicates wind coming from north
-        let windDirection: SGSourceValue<Double>?
+        let windDirection: SGDataSourceValue<Double>?
         /// Direction of wind at 20m above sea level. 0° indicates wind coming from north
-        let windDirection20m: SGSourceValue<Double>?
+        let windDirection20m: SGDataSourceValue<Double>?
         /// Direction of wind at 30m above sea level. 0° indicates wind coming from north
-        let windDirection30m: SGSourceValue<Double>?
+        let windDirection30m: SGDataSourceValue<Double>?
         /// Direction of wind at 40m above sea level. 0° indicates wind coming from north
-        let windDirection40m: SGSourceValue<Double>?
+        let windDirection40m: SGDataSourceValue<Double>?
         /// Direction of wind at 50m above sea level. 0° indicates wind coming from north
-        let windDirection50m: SGSourceValue<Double>?
+        let windDirection50m: SGDataSourceValue<Double>?
         /// Direction of wind at 80m above sea level. 0° indicates wind coming from north
-        let windDirection80m: SGSourceValue<Double>?
+        let windDirection80m: SGDataSourceValue<Double>?
         /// Direction of wind at 100m above sea level. 0° indicates wind coming from north
-        let windDirection100m: SGSourceValue<Double>?
+        let windDirection100m: SGDataSourceValue<Double>?
         /// Direction of wind at 1000hpa. 0° indicates wind coming from north
-        let windDirection1000hpa: SGSourceValue<Double>?
+        let windDirection1000hpa: SGDataSourceValue<Double>?
         /// Direction of wind at 800hpa. 0° indicates wind coming from north
-        let windDirection800hpa: SGSourceValue<Double>?
+        let windDirection800hpa: SGDataSourceValue<Double>?
         /// Direction of wind at 500hpa. 0° indicates wind coming from north
-        let windDirection500hpa: SGSourceValue<Double>?
+        let windDirection500hpa: SGDataSourceValue<Double>?
         /// Direction of wind at 200hpa. 0° indicates wind coming from north
-        let windDirection200hpa: SGSourceValue<Double>?
+        let windDirection200hpa: SGDataSourceValue<Double>?
         /// Speed of wind at 10m above sea level in meters per second.
-        let windSpeed: SGSourceValue<Double>?
+        let windSpeed: SGDataSourceValue<Double>?
         /// Speed of wind at 20m above sea level in meters per second.
-        let windSpeed20m: SGSourceValue<Double>?
+        let windSpeed20m: SGDataSourceValue<Double>?
         /// Speed of wind at 30m above sea level in meters per second.
-        let windSpeed30m: SGSourceValue<Double>?
+        let windSpeed30m: SGDataSourceValue<Double>?
         /// Speed of wind at 40m above sea level in meters per second.
-        let windSpeed40m: SGSourceValue<Double>?
+        let windSpeed40m: SGDataSourceValue<Double>?
         /// Speed of wind at 50m above sea level in meters per second.
-        let windSpeed50m: SGSourceValue<Double>?
+        let windSpeed50m: SGDataSourceValue<Double>?
         /// Speed of wind at 80m above sea level in meters per second.
-        let windSpeed80m: SGSourceValue<Double>?
+        let windSpeed80m: SGDataSourceValue<Double>?
         /// Speed of wind at 100m above sea level in meters per second.
-        let windSpeed100m: SGSourceValue<Double>?
+        let windSpeed100m: SGDataSourceValue<Double>?
         /// Speed of wind at 1000hpa in meters per second.
-        let windSpeed1000hpa: SGSourceValue<Double>?
+        let windSpeed1000hpa: SGDataSourceValue<Double>?
         /// Speed of wind at 800hpa in meters per second.
-        let windSpeed800hpa: SGSourceValue<Double>?
+        let windSpeed800hpa: SGDataSourceValue<Double>?
         /// Speed of wind at 500hpa in meters per second.
-        let windSpeed500hpa: SGSourceValue<Double>?
+        let windSpeed500hpa: SGDataSourceValue<Double>?
         /// Speed of wind at 200hpa in meters per second.
-        let windSpeed200hpa: SGSourceValue<Double>?
+        let windSpeed200hpa: SGDataSourceValue<Double>?
     }
     
     let hours: [Item]

@@ -1,26 +1,26 @@
 import Foundation
 
-public protocol StormGlassParameterEncodable {
+public protocol SGParameterEncodable {
     func encode() -> String
 }
 
-extension String: StormGlassParameterEncodable {
+extension String: SGParameterEncodable {
     public func encode() -> String { self }
 }
 
-extension Double: StormGlassParameterEncodable {
+extension Double: SGParameterEncodable {
     public func encode() -> String { "\(self)" }
 }
 
-extension Date: StormGlassParameterEncodable {
+extension Date: SGParameterEncodable {
     public func encode() -> String { "\(timeIntervalSince1970)" }
 }
 
-extension Array: StormGlassParameterEncodable where Element == String {
+extension Array: SGParameterEncodable where Element == String {
     public func encode() -> String { joined(separator: ",") }
 }
 
-extension Dictionary where Key == String, Value == Optional<StormGlassParameterEncodable> {
+extension Dictionary where Key == String, Value == Optional<SGParameterEncodable> {
     func convertToQueryItems() -> [URLQueryItem] {
         compactMap { parameter in
             guard let value = parameter.value?

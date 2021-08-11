@@ -1,13 +1,13 @@
 import Foundation
 
-public struct SGTideStationsListRequest: StormGlassEndpoint {
+public struct SGTideStationsListRequest: SGEndpoint {
     public typealias Response = SGTideStationsListResponse
     
     public var path: String {
         "/v2/tide/stations"
     }
     
-    public var parameters: [String : StormGlassParameterEncodable?] {
+    public var parameters: [String : SGParameterEncodable?] {
         return [:]
     }
 }
@@ -21,7 +21,7 @@ public struct SGTideStationsListResponse: Decodable {
         /// Longitude of tide station
         var lng: Double
         /// Tide station owner
-        var source: StormGlassSource
+        var source: SGDataSource
     }
     
     let data: [Item]

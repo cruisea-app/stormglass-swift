@@ -1,6 +1,6 @@
 import Foundation
 
-public struct SGSolarPointRequest: StormGlassEndpoint {
+public struct SGSolarPointRequest: SGEndpoint {
     
     public typealias Response = SGSolarPointResponse
     
@@ -8,7 +8,7 @@ public struct SGSolarPointRequest: StormGlassEndpoint {
         "/v2/solar/point"
     }
     
-    public var parameters: [String : StormGlassParameterEncodable?] {
+    public var parameters: [String : SGParameterEncodable?] {
         [:]
     }
     

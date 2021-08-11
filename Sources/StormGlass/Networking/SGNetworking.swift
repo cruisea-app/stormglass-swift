@@ -1,6 +1,6 @@
 import Foundation
 
-public struct StormGlassRequest<Endpoint: StormGlassEndpoint> {
+public struct SGRequest<Endpoint: SGEndpoint> {
     
     internal let endpoint: Endpoint
     internal let apiKeyOverride: String?
@@ -17,15 +17,15 @@ public struct StormGlassRequest<Endpoint: StormGlassEndpoint> {
     }
     
     internal func makeRequest() throws -> URLRequest {
-        guard var components = URLComponents(string: StormGlassConfiguration.shared.host) else {
-            throw StormGlassServiceError.badURL
+        guard var components = URLComponents(string: SGConfiguration.shared.host) else {
+            throw SGServiceError.badURL
         }
         
         components.path = endpoint.path
         components.queryItems = endpoint.parameters.convertToQueryItems()
         
         guard let url = components.url else {
-            throw StormGlassServiceError.badURL
+            throw SGServiceError.badURL
         }
         
         var request = URLRequest(
@@ -35,10 +35,10 @@ public struct StormGlassRequest<Endpoint: StormGlassEndpoint> {
         
         request.httpMethod = "GET"
         
-        if let apiKey = apiKeyOverride ?? StormGlassConfiguration.shared.apiKey {
+        if let apiKey = apiKeyOverride ?? SGConfiguration.shared.apiKey {
             request.addValue(apiKey, forHTTPHeaderField: "Authorization")
         } else {
-            throw StormGlassServiceError.unauthorised
+            throw SGServiceError.unauthorised
         }
         
         return request
@@ -54,7 +54,7 @@ public struct StormGlassRequest<Endpoint: StormGlassEndpoint> {
             let value = try decoder.singleValueContainer().decode(String.self)
             
             guard let date = formatter.date(from: value) else {
-                throw StormGlassServiceError.badResponse
+                throw SGServiceError.badResponse
             }
             
             return date
@@ -73,7 +73,7 @@ public struct StormGlassRequest<Endpoint: StormGlassEndpoint> {
                 }
                 
                 guard let data = data else {
-                    completion(.failure(StormGlassServiceError.badResponse))
+                    completion(.failure(SGServiceError.badResponse))
                     return
                 }
                 

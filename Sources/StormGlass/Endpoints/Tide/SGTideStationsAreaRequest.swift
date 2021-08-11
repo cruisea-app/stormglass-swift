@@ -1,6 +1,6 @@
 import Foundation
 
-public struct SGTideStationsAreaRequest: StormGlassEndpoint {
+public struct SGTideStationsAreaRequest: SGEndpoint {
     public typealias Response = SGTideStationsListResponse
     
     internal let box: SGCoordinateBox
@@ -13,7 +13,7 @@ public struct SGTideStationsAreaRequest: StormGlassEndpoint {
         "/v2/tide/stations/area"
     }
     
-    public var parameters: [String : StormGlassParameterEncodable?] {
+    public var parameters: [String : SGParameterEncodable?] {
         return [
             "box": box.encodable
         ]

@@ -19,7 +19,7 @@ public struct SGCoordinateBox {
         self.bottomLeft = bottomLeft
     }
     
-    internal var encodable: StormGlassParameterEncodable {
+    internal var encodable: SGParameterEncodable {
         [
             "\(topRight.latitude)",
             ",",

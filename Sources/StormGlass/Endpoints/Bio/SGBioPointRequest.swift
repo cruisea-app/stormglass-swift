@@ -1,6 +1,6 @@
 import Foundation
 
-public struct SGBioPointRequest: StormGlassEndpoint {
+public struct SGBioPointRequest: SGEndpoint {
     
     public typealias Response = SGBioPointResponse
     
@@ -8,7 +8,7 @@ public struct SGBioPointRequest: StormGlassEndpoint {
         "/v2/bio/point"
     }
     
-    public var parameters: [String : StormGlassParameterEncodable?] {
+    public var parameters: [String : SGParameterEncodable?] {
         [:]
     }
     

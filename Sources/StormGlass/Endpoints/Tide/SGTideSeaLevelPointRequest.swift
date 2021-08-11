@@ -1,6 +1,6 @@
 import Foundation
 
-public struct SGTideSeaLevelPointRequest: StormGlassEndpoint {
+public struct SGTideSeaLevelPointRequest: SGEndpoint {
     
     public typealias Response = SGTideSeaLevelPointResponse
     
@@ -8,7 +8,7 @@ public struct SGTideSeaLevelPointRequest: StormGlassEndpoint {
         "/v2/tide/sea-level/point"
     }
     
-    public var parameters: [String : StormGlassParameterEncodable?] {
+    public var parameters: [String : SGParameterEncodable?] {
         [:]
     }
     

@@ -1,6 +1,6 @@
-public class StormGlassConfiguration {
+public class SGConfiguration {
     
-    public static var shared = StormGlassConfiguration()
+    public static var shared = SGConfiguration()
     private init() { }
     
     public var host: String = "https://api.stormglass.io"

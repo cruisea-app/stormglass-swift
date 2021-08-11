@@ -12,14 +12,14 @@ final class StormGlassTests: XCTestCase {
             throw TestError.invalidApiKey
         }
         
-        StormGlassConfiguration.shared.apiKey = apiKey
+        SGConfiguration.shared.apiKey = apiKey
         try super.setUpWithError()
     }
     
     func testExample() throws {
         let exp = expectation(description: "request should complete")
         
-        let request = StormGlassRequest(endpoint: SGWeatherPointRequest(latitude: 0, longitude: 0, values: SGWeatherPointParameters.allCases))
+        let request = SGRequest(endpoint: SGWeatherPointRequest(latitude: 0, longitude: 0, values: SGWeatherPointParameters.allCases))
         request.fetch { result in
             exp.fulfill()
         }
