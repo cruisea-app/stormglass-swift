@@ -37,7 +37,7 @@ public enum SGDataSource: String, CaseIterable, Decodable {
             return "Unknown Data Source"
         }
     }
-    
+
     public var updateFrequency: Int? {
         switch self {
         case .icon:

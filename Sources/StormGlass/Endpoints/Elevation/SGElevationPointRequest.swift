@@ -1,13 +1,19 @@
 import Foundation
 
 public struct SGElevationPointRequest: SGEndpoint {
+    // Response Type
     public typealias Response = SGElevationPointResponse
 
+    // Required Parameters
     internal let coordinate: SGCoordinate
+
+    // Initialiser
 
     public init(coordinate: SGCoordinate) {
         self.coordinate = coordinate
     }
+
+    // Protocol
 
     public var path: String {
         "/v2/elevation/point"
@@ -27,6 +33,8 @@ public struct SGElevationPointResponse: Decodable {
         public let elevation: Double
     }
 
+    /// The data for this request
     public let data: Item
+    /// Extra metadata about the request, including details about your remaining quota
     public let meta: SGResponseMetadata
 }

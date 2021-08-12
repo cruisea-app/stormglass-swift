@@ -278,6 +278,8 @@ public struct SGWeatherPointResponse: Decodable {
         public let windSpeed200hpa: SGDataSourceValue<Double>?
     }
 
+    /// The data for this request
     public let hours: [Item]
+    /// Extra metadata about the request, including details about your remaining quota
     public let meta: SGResponseMetadata
 }

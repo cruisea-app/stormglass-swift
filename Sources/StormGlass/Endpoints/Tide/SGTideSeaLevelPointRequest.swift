@@ -1,12 +1,27 @@
 import Foundation
 
 public struct SGTideSeaLevelPointRequest: SGEndpoint {
+    // Response Type
     public typealias Response = SGTideSeaLevelPointResponse
 
+    // Required Parameters
     let coordinate: SGCoordinate
+
+    // Optional Parameters
     let startDate: Date?
     let endDate: Date?
     let datum: SGTideDatum?
+
+    // Initialiser
+
+    public init(coordinate: SGCoordinate, startDate: Date? = nil, endDate: Date? = nil, datum: SGTideDatum? = nil) {
+        self.coordinate = coordinate
+        self.startDate = startDate
+        self.endDate = endDate
+        self.datum = datum
+    }
+
+    // Protocol
 
     public var path: String {
         "/v2/tide/sea-level/point"
@@ -59,6 +74,8 @@ public struct SGTideSeaLevelPointResponse: Decodable {
         }
     }
 
+    /// The data for this request
     public let data: [Item]
+    /// Extra metadata about the request, including details about your remaining quota
     public let meta: SGResponseMetadata
 }

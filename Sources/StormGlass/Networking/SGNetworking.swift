@@ -74,7 +74,7 @@ public struct SGRequest<Endpoint: SGEndpoint> {
                     completion(.failure(SGServiceError.badResponse))
                     return
                 }
-                
+
                 do {
                     let result = try self.decoder.decode(Endpoint.Response.self, from: data)
                     completion(.success(result))

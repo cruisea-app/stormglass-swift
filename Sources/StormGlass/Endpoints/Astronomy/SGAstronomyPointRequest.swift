@@ -1,17 +1,25 @@
 import Foundation
 
 public struct SGAstronomyPointRequest: SGEndpoint {
+    // Response Type
     public typealias Response = SGAstronomyPointResponse
 
+    // Required Parameters
     internal let coordinate: SGCoordinate
+
+    // Optional Parameters
     internal let startDate: Date?
     internal let endDate: Date?
+
+    // Initialiser
 
     public init(coordinate: SGCoordinate, startDate: Date? = nil, endDate: Date? = nil) {
         self.coordinate = coordinate
         self.startDate = startDate
         self.endDate = endDate
     }
+
+    // Protocol
 
     public var path: String {
         "/v2/astronomy/point"
@@ -29,17 +37,27 @@ public struct SGAstronomyPointRequest: SGEndpoint {
 
 public struct SGAstronomyPointResponse: Decodable {
     public struct MoonPhase: Decodable {
+        /// The type of moon phase
         public enum PhaseTextValue: String, Decodable {
+            /// New moon
             case newMoon = "New moon"
+            /// Waxing crescent
             case waxingCrescent = "Waxing crescent"
+            /// First quarter
             case firstQuarter = "First quarter"
+            /// Waxing gibbous
             case waxingGibbous = "Waxing gibbous"
+            /// Full moon
             case fullMoon = "Full moon"
+            /// Vaning gibbous
             case vaningGibbous = "Vaning gibbous"
+            /// Third quarter
             case thirdQuarter = "Third quarter"
+            /// Vaning crescent
             case vaningCrescent = "Vaning crescent"
         }
 
+        /// Details about the moon phase
         public struct Phase: Decodable {
             /// A string describing the moon phase.
             public let text: PhaseTextValue
@@ -84,6 +102,8 @@ public struct SGAstronomyPointResponse: Decodable {
         public let nauticalDusk: Date
     }
 
+    /// The data for this request
     public let data: [Item]
+    /// Extra metadata about the request, including details about your remaining quota
     public let meta: SGResponseMetadata
 }

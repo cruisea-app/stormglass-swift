@@ -1,13 +1,19 @@
 import Foundation
 
 public struct SGBioPointRequest: SGEndpoint {
+    // Response Type
     public typealias Response = SGBioPointResponse
 
+    // Required Parameters
     internal let coordinate: SGCoordinate
     internal let values: [String]
+
+    // Optional Parameters
     internal let startDate: Date?
     internal let endDate: Date?
     internal let sources: [String]?
+
+    // Initialiser
 
     public init(
         coordinate: SGCoordinate,
@@ -22,6 +28,8 @@ public struct SGBioPointRequest: SGEndpoint {
         self.endDate = endDate
         sources = dataSources?.map(\.rawValue)
     }
+
+    // Protocol
 
     public var path: String {
         "/v2/bio/point"
@@ -120,6 +128,8 @@ public struct SGBioPointResponse: Decodable {
         public let soilTemperature100cm: SGDataSourceValue<Double>?
     }
 
+    /// The data for this request
     public let data: [Item]
+    /// Extra metadata about the request, including details about your remaining quota
     public let meta: SGResponseMetadata
 }

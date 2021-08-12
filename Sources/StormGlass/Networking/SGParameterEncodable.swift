@@ -21,7 +21,7 @@ extension Array: SGParameterEncodable where Element == String {
 }
 
 extension Dictionary where Key == String, Value == SGParameterEncodable? {
-    internal func convertToQueryItems() -> [URLQueryItem] {
+    func convertToQueryItems() -> [URLQueryItem] {
         compactMap { parameter in
             guard let value = parameter.value?
                 .encode()

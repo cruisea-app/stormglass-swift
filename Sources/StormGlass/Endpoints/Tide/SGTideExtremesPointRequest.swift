@@ -1,12 +1,27 @@
 import Foundation
 
 public struct SGTideExtremesPointRequest: SGEndpoint {
+    // Response Type
     public typealias Response = SGTideExtremesPointResponse
 
+    // Required Parameters
     internal let coordinate: SGCoordinate
+
+    // Optional Parameters
     internal let startDate: Date?
     internal let endDate: Date?
     internal let datum: SGTideDatum?
+
+    // Initialiser
+
+    public init(coordinate: SGCoordinate, startDate: Date? = nil, endDate: Date? = nil, datum: SGTideDatum? = nil) {
+        self.coordinate = coordinate
+        self.startDate = startDate
+        self.endDate = endDate
+        self.datum = datum
+    }
+
+    // Protocol
 
     public var path: String {
         "/v2/tide/extremes/point"
@@ -23,13 +38,6 @@ public struct SGTideExtremesPointRequest: SGEndpoint {
     }
 }
 
-public enum SGTideDatum: String, SGParameterEncodable {
-    case meanLowerLowWater = "mllw"
-    case meanSeaLevel = "msl"
-
-    public func encode() -> String { rawValue }
-}
-
 public struct SGTideExtremesPointResponse: Decodable {
     public enum ExtremeType: String, Decodable {
         case low, high
@@ -44,6 +52,8 @@ public struct SGTideExtremesPointResponse: Decodable {
         public let type: ExtremeType
     }
 
+    /// The data for this request
     public let data: [Item]
+    /// Extra metadata about the request, including details about your remaining quota
     public let meta: SGResponseMetadata
 }
