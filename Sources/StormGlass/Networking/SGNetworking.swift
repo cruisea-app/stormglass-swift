@@ -1,5 +1,9 @@
 import Foundation
 
+#if canImport(FoundationNetworking)
+    import FoundationNetworking
+#endif
+
 public struct SGRequest<Endpoint: SGEndpoint> {
     internal let endpoint: Endpoint
     internal let apiKeyOverride: String?
