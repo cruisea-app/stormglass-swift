@@ -6,6 +6,7 @@ public struct SGTideStationsListRequest: SGEndpoint {
 
     // Initialiser
 
+    /// The Tide Stations List Requests is used to list all available stations.
     public init() {}
 
     // Protocol

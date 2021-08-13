@@ -9,7 +9,8 @@ In order to use this package, you will first need to obtain an API key from [Sto
 ## TODO
 
 - [ ] Tests (with complete fixture list)
-- [ ] Documentation (Inline, and README)
+- [x] Inline Documentation
+- [ ] README Documentation
 - [x] Access Control Audit
 - [ ] Error Handling
 - [ ] Swift 5 Async Support (?)

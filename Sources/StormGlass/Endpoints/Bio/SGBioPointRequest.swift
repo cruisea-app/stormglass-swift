@@ -15,6 +15,14 @@ public struct SGBioPointRequest: SGEndpoint {
 
     // Initialiser
 
+    /// The bio request is used to fetch bio related data for a point. The Storm Glass API provides bio data globally for both land and sea.
+    ///
+    /// - Parameters:
+    ///   - coordinate: The coordinates of the location you would like biological data for
+    ///   - values: The parameters you would like to receive in the request
+    ///   - startDate: Timestamp in UTC for first forecast hour
+    ///   - endDate: Timestamp in UTC for last forecast hour
+    ///   - dataSources: Your preferred data source
     public init(
         coordinate: SGCoordinate,
         values: [SGBioPointParameters],

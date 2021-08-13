@@ -15,6 +15,14 @@ public struct SGSolarPointRequest: SGEndpoint {
 
     // Initialiser
 
+    /// The solar request is used to fetch solar related data for a point. The Storm Glass API provides solar data globally.
+    ///
+    /// - Parameters:
+    ///   - coordinate: The coordinates of the location you would like solar data for
+    ///   - values: The parameters you would like to receive in the request
+    ///   - startDate: Timestamp in UTC for first forecast hour
+    ///   - endDate: Timestamp in UTC for last forecast hour
+    ///   - dataSources: Your preferred data source
     public init(
         coordinate: SGCoordinate,
         values: [SGSolarPointParameters],

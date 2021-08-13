@@ -9,7 +9,12 @@ public struct SGTideStationsAreaRequest: SGEndpoint {
 
     // Initialiser
 
-    public init(box: SGCoordinateBox) {
+    /// The Tide Stations Area Request will list all available tide stations within a defined geographic area.
+    ///
+    /// - Parameter box: The geographic area of the request location
+    public init(
+        box: SGCoordinateBox
+    ) {
         self.box = box
     }
 

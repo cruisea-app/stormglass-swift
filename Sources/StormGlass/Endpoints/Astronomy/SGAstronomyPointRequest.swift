@@ -13,7 +13,17 @@ public struct SGAstronomyPointRequest: SGEndpoint {
 
     // Initialiser
 
-    public init(coordinate: SGCoordinate, startDate: Date? = nil, endDate: Date? = nil) {
+    /// The Storm Glass API provides astronomical data globally.
+    ///
+    /// - Parameters:
+    ///   - coordinate: The coordinates of the location you would like astronomical data for
+    ///   - startDate: Timestamp in UTC for first forecast hour
+    ///   - endDate: For how many days ahead to receive data. max 31 days.
+    public init(
+        coordinate: SGCoordinate,
+        startDate: Date? = nil,
+        endDate: Date? = nil
+    ) {
         self.coordinate = coordinate
         self.startDate = startDate
         self.endDate = endDate

@@ -9,7 +9,12 @@ public struct SGElevationPointRequest: SGEndpoint {
 
     // Initialiser
 
-    public init(coordinate: SGCoordinate) {
+    /// The elevation request is used to fetch elevation data (bathymetry for oceans and topography for land) for a point. The Storm Glass API provides elevation data globally.
+    ///
+    /// - Parameter coordinate: The coordinates of the location you would like elevation data for
+    public init(
+        coordinate: SGCoordinate
+    ) {
         self.coordinate = coordinate
     }
 

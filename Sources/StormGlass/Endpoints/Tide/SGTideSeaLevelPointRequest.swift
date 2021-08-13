@@ -6,15 +6,27 @@ public struct SGTideSeaLevelPointRequest: SGEndpoint {
 
     // Required Parameters
     let coordinate: SGCoordinate
+    let datum: SGTideDatum
 
     // Optional Parameters
     let startDate: Date?
     let endDate: Date?
-    let datum: SGTideDatum?
 
     // Initialiser
 
-    public init(coordinate: SGCoordinate, startDate: Date? = nil, endDate: Date? = nil, datum: SGTideDatum? = nil) {
+    /// Retrieve the sea level given in meters hour by hour for a single coordinate
+    ///
+    /// - Parameters:
+    ///   - coordinate: The coordinates of the location you would like tide data for
+    ///   - startDate: Timestamp in UTC for first forecast hour
+    ///   - endDate: Timestamp in UTC for last forecast hour
+    ///   - datum: Datum values will be relative to (defaults to MSL - Mean Sea Level)
+    public init(
+        coordinate: SGCoordinate,
+        startDate: Date? = nil,
+        endDate: Date? = nil,
+        datum: SGTideDatum = .meanSeaLevel
+    ) {
         self.coordinate = coordinate
         self.startDate = startDate
         self.endDate = endDate
