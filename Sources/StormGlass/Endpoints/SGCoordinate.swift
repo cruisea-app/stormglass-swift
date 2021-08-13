@@ -8,6 +8,8 @@ public struct SGCoordinate: Equatable {
         self.latitude = latitude
         self.longitude = longitude
     }
+
+    internal static let zero = SGCoordinate(latitude: 0, longitude: 0)
 }
 
 public struct SGCoordinateBox: Equatable {

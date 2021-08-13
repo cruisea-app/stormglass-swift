@@ -21,7 +21,8 @@ let package = Package(
         ),
         .testTarget(
             name: "StormGlassTests",
-            dependencies: ["StormGlass"]
+            dependencies: ["StormGlass"],
+            exclude: ["Fixtures"]
         ),
     ]
 )
