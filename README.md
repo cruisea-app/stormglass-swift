@@ -12,6 +12,5 @@ In order to use this package, you will first need to obtain an API key from [Sto
 - [x] Inline Documentation
 - [ ] README Documentation
 - [x] Access Control Audit
-- [ ] Error Handling
-- [ ] Swift 5 Async Support (?)
+- [x] Error Handling
 - [x] Add to SPI

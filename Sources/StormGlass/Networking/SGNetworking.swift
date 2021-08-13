@@ -64,7 +64,9 @@ public struct SGRequest<Endpoint: SGEndpoint> {
 
     public func fetch(completion: @escaping (Result<Endpoint.Response, Error>) -> Void) {
         do {
-            let task = try urlSession.dataTask(with: makeRequest()) { data, _, error in
+            let task = try urlSession.dataTask(with: makeRequest()) { data, response, error in
+                // Network Errors
+
                 if let error = error {
                     completion(.failure(error))
                     return
@@ -74,6 +76,22 @@ public struct SGRequest<Endpoint: SGEndpoint> {
                     completion(.failure(SGServiceError.badResponse))
                     return
                 }
+
+                // Error Handling
+
+                if let error = try? self.decoder.decode(SGErrorResponse.self, from: data) {
+                    completion(.failure(error))
+                    return
+                }
+
+                if let httpResponse = response as? HTTPURLResponse,
+                   let error = SGServiceError(statusCode: httpResponse.statusCode)
+                {
+                    completion(.failure(error))
+                    return
+                }
+
+                // Decode Response
 
                 do {
                     let result = try self.decoder.decode(Endpoint.Response.self, from: data)

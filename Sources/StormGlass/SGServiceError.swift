@@ -24,7 +24,7 @@ public enum SGServiceError: LocalizedError {
 
     internal init?(statusCode: Int) {
         switch statusCode {
-        case 400:
+        case 400, 422:
             self = .badRequest
         case 401:
             self = .unauthorised
@@ -69,5 +69,20 @@ public enum SGServiceError: LocalizedError {
         default:
             return nil
         }
+    }
+}
+
+public struct SGErrorResponse: Error, Decodable, CustomStringConvertible {
+    public struct Item: Decodable {
+        let key: String?
+        let params: [String]?
+    }
+
+    public let errors: Item
+
+    public var description: String {
+        errors.key ??
+            errors.params?.joined(separator: "\n\n") ??
+            "Unknown Error"
     }
 }
