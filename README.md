@@ -1,16 +1,44 @@
 # Storm Glass for Swift
 
-⚠️ This is a work-in-progress package started on August 10th 2021.
-
 > Global high-resolution weather forecasts directly from the world’s most trusted meteorological institutions.
 
 In order to use this package, you will first need to obtain an API key from [Storm Glass](https://stormglass.io/).
 
+## Installation
+
+Add package to your Xcode project using Swift Package Manager.
+
+## Usage
+
+```swift
+
+// Step 1:
+// Configure API Key
+
+SGConfiguration.shared.apiKey = "your-api-key"
+
+// Step 2:
+// Create Endpoint Request
+
+import StormGlass
+let endpoint = SGWeatherPointRequest(... parameters)
+
+// Step 3:
+// Create Networking Request
+
+let request = SGRequest(endpoint: endpoint)
+
+// Step 4:
+// Execute
+
+request.fetch { result in
+    // Step 5:
+    // Handle Result...
+    
+    // (psst, this is where you put your code using the data!)
+}
+```
+
 ## TODO
 
-- [ ] Tests (with complete fixture list)
-- [x] Inline Documentation
-- [ ] README Documentation
-- [x] Access Control Audit
-- [x] Error Handling
-- [x] Add to SPI
+Tests are yet to be written. Recommended against using in any production app until this has been done.
