@@ -1,7 +1,7 @@
 @testable import StormGlass
 import XCTest
 
-final class IntegrationTests: XCTestCase {
+final class SGIntegrationTests: XCTestCase {
     override func setUpWithError() throws {
         guard let apiKey = ProcessInfo.processInfo.environment["API_KEY"] else {
             throw XCTSkip("Missing API Key")
@@ -39,8 +39,13 @@ final class IntegrationTests: XCTestCase {
         // let endpoint = SGTideSeaLevelPointRequest(coordinate: .zero, datum: .meanLowerLowWater)
 
         let request = SGRequest(endpoint: endpoint)
-        request.fetch { _ in
-            exp.fulfill()
+        request.fetch { result in
+            do {
+                _ = try result.get()
+                exp.fulfill()
+            } catch {
+                XCTFail(error.localizedDescription)
+            }
         }
 
         waitForExpectations(timeout: 10, handler: nil)

@@ -35,6 +35,6 @@ extension Dictionary where Key == String, Value == SGParameterEncodable? {
                 name: parameter.key,
                 value: value
             )
-        }
+        }.sorted(by: { $0.name < $1.name })
     }
 }
