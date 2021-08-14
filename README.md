@@ -38,7 +38,3 @@ request.fetch { result in
     // (psst, this is where you put your code using the data!)
 }
 ```
-
-## TODO
-
-Tests are yet to be written. Recommended against using in any production app until this has been done.
