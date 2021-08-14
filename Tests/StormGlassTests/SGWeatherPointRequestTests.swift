@@ -1,7 +1,7 @@
 @testable import StormGlass
 import XCTest
 
-final class SGWeatherPointRequestTests: XCTestCase {
+final class SGWeatherPointRequestTests: SGBaseTests {
     
     func testParameters_required() {
         let endpoint = SGWeatherPointRequest(
@@ -56,6 +56,14 @@ final class SGWeatherPointRequestTests: XCTestCase {
             url,
             "https://api.stormglass.io/v2/weather/point?lat=0.0&lng=0.0&params=gust"
         )
+    }
+    
+    func testDecoding() throws {
+        let endpoint = SGWeatherPointRequest(coordinate: .zero, values: [ .gust ])
+        let networking = SGRequest(endpoint: endpoint, apiKey: "")
+        
+        _ = try networking.decoder.decode(SGWeatherPointResponse.self, from: loadFixture(withName: "weather-point-singleValue"))
+        _ = try networking.decoder.decode(SGWeatherPointResponse.self, from: loadFixture(withName: "weather-point-allValues"))
     }
     
 }

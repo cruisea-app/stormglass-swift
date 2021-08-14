@@ -1,7 +1,7 @@
 @testable import StormGlass
 import XCTest
 
-final class SGTideExtremesPointRequestTests: XCTestCase {
+final class SGTideExtremesPointRequestTests: SGBaseTests {
     
     func testParameters_required() {
         let endpoint = SGTideExtremesPointRequest(
@@ -53,6 +53,13 @@ final class SGTideExtremesPointRequestTests: XCTestCase {
             url,
             "https://api.stormglass.io/v2/tide/extremes/point?datum=MSL&lat=0.0&lng=0.0"
         )
+    }
+    
+    func testDecoding() throws {
+        let endpoint = SGTideExtremesPointRequest(coordinate: .zero)
+        let networking = SGRequest(endpoint: endpoint, apiKey: "")
+        
+        _ = try networking.decoder.decode(SGTideSeaLevelPointResponse.self, from: loadFixture(withName: "tide-extremes-point-msl"))
     }
     
 }

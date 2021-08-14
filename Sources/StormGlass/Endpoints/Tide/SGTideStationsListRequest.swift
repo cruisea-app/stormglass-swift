@@ -29,7 +29,7 @@ public struct SGTideStationsListResponse: Decodable {
         /// Longitude of tide station
         public var lng: Double
         /// Tide station owner
-        public var source: SGDataSource
+        public var source: String
     }
 
     /// The data for this request

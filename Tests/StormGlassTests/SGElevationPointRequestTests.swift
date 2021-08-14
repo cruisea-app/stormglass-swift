@@ -1,7 +1,7 @@
 @testable import StormGlass
 import XCTest
 
-final class SGElevationPointRequestTests: XCTestCase {
+final class SGElevationPointRequestTests: SGBaseTests {
     
     func testParameters_required() {
         let endpoint = SGElevationPointRequest(
@@ -28,6 +28,13 @@ final class SGElevationPointRequestTests: XCTestCase {
             url,
             "https://api.stormglass.io/v2/elevation/point?lat=0.0&lng=0.0"
         )
+    }
+    
+    func testDecoding() throws {
+        let endpoint = SGElevationPointRequest(coordinate: .zero)
+        let networking = SGRequest(endpoint: endpoint, apiKey: "")
+        
+        _ = try networking.decoder.decode(SGElevationPointResponse.self, from: loadFixture(withName: "elevation-point"))
     }
     
 }

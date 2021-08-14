@@ -137,7 +137,7 @@ public struct SGBioPointResponse: Decodable {
     }
 
     /// The data for this request
-    public let data: [Item]
+    public let hours: [Item]
     /// Extra metadata about the request, including details about your remaining quota
     public let meta: SGResponseMetadata
 }

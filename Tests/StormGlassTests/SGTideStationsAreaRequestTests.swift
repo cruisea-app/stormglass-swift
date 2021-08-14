@@ -1,7 +1,7 @@
 @testable import StormGlass
 import XCTest
 
-final class SGTideStationsAreaRequestTests: XCTestCase {
+final class SGTideStationsAreaRequestTests: SGBaseTests {
     
     func testParameters_required() {
         let endpoint = SGTideStationsAreaRequest(
@@ -29,6 +29,15 @@ final class SGTideStationsAreaRequestTests: XCTestCase {
             url,
             "https://api.stormglass.io/v2/tide/stations/area?box=0.0,0.0:50.0,40.0"
         )
+    }
+    
+    func testDecoding() throws {
+        let endpoint = SGTideStationsAreaRequest(
+            box: .init(topRight: .zero, bottomLeft: .init(latitude: 50, longitude: 40))
+        )
+        let networking = SGRequest(endpoint: endpoint, apiKey: "")
+        
+        _ = try networking.decoder.decode(SGTideStationsListResponse.self, from: loadFixture(withName: "tide-area"))
     }
     
 }

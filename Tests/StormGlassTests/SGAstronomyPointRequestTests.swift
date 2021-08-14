@@ -1,7 +1,7 @@
 @testable import StormGlass
 import XCTest
 
-final class SGAstronomyPointRequestTests: XCTestCase {
+final class SGAstronomyPointRequestTests: SGBaseTests {
     
     func testParameters_required() {
         let endpoint = SGAstronomyPointRequest(
@@ -49,6 +49,13 @@ final class SGAstronomyPointRequestTests: XCTestCase {
             url,
             "https://api.stormglass.io/v2/astronomy/point?lat=0.0&lng=0.0"
         )
+    }
+    
+    func testDecoding() throws {
+        let endpoint = SGAstronomyPointRequest(coordinate: .zero)
+        let networking = SGRequest(endpoint: endpoint, apiKey: "")
+        
+        _ = try networking.decoder.decode(SGAstronomyPointResponse.self, from: loadFixture(withName: "astronomy-point"))
     }
     
 }

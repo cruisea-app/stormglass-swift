@@ -1,7 +1,7 @@
 @testable import StormGlass
 import XCTest
 
-final class SGBioPointRequestTests: XCTestCase {
+final class SGBioPointRequestTests: SGBaseTests {
     
     func testParameters_required() {
         let endpoint = SGBioPointRequest(
@@ -56,6 +56,14 @@ final class SGBioPointRequestTests: XCTestCase {
             url,
             "https://api.stormglass.io/v2/bio/point?lat=0.0&lng=0.0&params=iron"
         )
+    }
+    
+    func testDecoding() throws {
+        let endpoint = SGBioPointRequest(coordinate: .zero, values: [ .iron ])
+        let networking = SGRequest(endpoint: endpoint, apiKey: "")
+        
+        _ = try networking.decoder.decode(SGBioPointResponse.self, from: loadFixture(withName: "bio-point-singleValue"))
+        _ = try networking.decoder.decode(SGBioPointResponse.self, from: loadFixture(withName: "bio-point-allValues"))
     }
     
 }

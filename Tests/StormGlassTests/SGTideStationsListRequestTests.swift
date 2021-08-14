@@ -1,7 +1,7 @@
 @testable import StormGlass
 import XCTest
 
-final class SGTideStationsListRequestTests: XCTestCase {
+final class SGTideStationsListRequestTests: SGBaseTests {
     
     func testParameters_required() {
         let endpoint = SGTideStationsListRequest()
@@ -20,6 +20,13 @@ final class SGTideStationsListRequestTests: XCTestCase {
             url,
             "https://api.stormglass.io/v2/tide/stations?"
         )
+    }
+    
+    func testDecoding() throws {
+        let endpoint = SGTideStationsListRequest()
+        let networking = SGRequest(endpoint: endpoint, apiKey: "")
+        
+        _ = try networking.decoder.decode(SGTideStationsListResponse.self, from: loadFixture(withName: "tide-list"))
     }
     
 }

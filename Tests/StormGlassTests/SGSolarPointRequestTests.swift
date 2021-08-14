@@ -1,7 +1,7 @@
 @testable import StormGlass
 import XCTest
 
-final class SGSolarPointRequestTests: XCTestCase {
+final class SGSolarPointRequestTests: SGBaseTests {
     
     func testParameters_required() {
         let endpoint = SGSolarPointRequest(
@@ -56,6 +56,14 @@ final class SGSolarPointRequestTests: XCTestCase {
             url,
             "https://api.stormglass.io/v2/solar/point?lat=0.0&lng=0.0&params=uvIndex"
         )
+    }
+    
+    func testDecoding() throws {
+        let endpoint = SGSolarPointRequest(coordinate: .zero, values: [ .uvIndex ])
+        let networking = SGRequest(endpoint: endpoint, apiKey: "")
+        
+        _ = try networking.decoder.decode(SGSolarPointResponse.self, from: loadFixture(withName: "solar-point-singleValue"))
+        _ = try networking.decoder.decode(SGSolarPointResponse.self, from: loadFixture(withName: "solar-point-allValues"))
     }
     
 }
